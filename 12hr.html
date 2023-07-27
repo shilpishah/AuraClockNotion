@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Green Aura Clock</title>
+  <style>
+    body {
+      background: radial-gradient(circle, #a4b691, #008000); <!-- gradient shape, inner color, outer color -->
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #clock {
+      color: #fff;
+      font-size: 50px;
+      text-align: center;
+      /* Update the font-family to your preferred font */
+      font-family: "Your Preferred Font", sans-serif; <!-- change font for clock -->
+    }
+  </style>
+</head>
+<body>
+  <div id="clock"></div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      let meridiem = "AM";
+
+      // Convert to 12-hour format
+      if (hours > 12) {
+        hours %= 12;
+        meridiem = "PM";
+      }
+
+      hours = String(hours).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      const timeString = `${hours}:${minutes}:${seconds} ${meridiem}`;
+      document.getElementById('clock').innerText = timeString;
+    }
+
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
